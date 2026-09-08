@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Sinh viên</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Danh sách Sinh viên</h2>
+        <!-- Nút mở Modal Thêm Sinh Viên -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+            + Thêm Sinh Viên
+        </button>
+    </div>
+
+    <!-- Thanh Tìm Kiếm -->
+    <form action="/students" method="get" class="mb-3 d-flex gap-2">
+        <input type="text" name="keyword" class="form-control" placeholder="Tìm theo tên hoặc mã SV..." th:value="${keyword}">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+
+    <!-- Bảng Danh Sách Sinh Viên -->
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã SV</th>
+                <th>Họ và tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Lớp</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.studentCode}"></td>
+                <td th:text="${student.fullName}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.phone}"></td>
+                <td th:text="${student.className}"></td>
+                <td>
+                    <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-sm btn-info text-white">Chi tiết</a>
+                    <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-sm btn-warning text-white">Sửa</a>
+                    <a th:href="@{/students/delete/{id}(id=${student.id})}" 
+                       onclick="return confirm('Bạn có chắc muốn xóa sinh viên này?');" 
+                       class="btn btn-sm btn-danger">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal Thêm Sinh Viên Mới -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form th:action="@{/students/add}" th:object="${newStudent}" method="post">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">Thêm Sinh Viên Mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Mã sinh viên</label>
+                            <input type="text" th:field="*{studentCode}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Họ và tên</label>
+                            <input type="text" th:field="*{fullName}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" th:field="*{email}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="text" th:field="*{phone}" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Lớp học</label>
+                            <input type="text" th:field="*{className}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Lưu sinh viên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
