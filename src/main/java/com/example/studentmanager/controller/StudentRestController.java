@@ -29,8 +29,12 @@ public class StudentRestController {
 
     // 1. GET /api/students - Lấy tất cả sinh viên
     @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> students = studentRepository.findAll();
+    public ResponseEntity<List<Student>> getAllStudents(
+            @RequestParam(value = "keyword", required = false) String keyword) {
+        List<Student> students = keyword == null || keyword.trim().isEmpty()
+                ? studentRepository.findAll()
+                : studentRepository
+                        .findByFullNameContainingIgnoreCaseOrStudentCodeContainingIgnoreCase(keyword, keyword);
         return ResponseEntity.ok(students);
     }
 

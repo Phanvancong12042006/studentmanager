@@ -12,4 +12,5 @@ public class StudentmanagerApplication {
 
 }
 
-// http://localhost:8888/students
+// http://localhost:8111/students
+// http://localhost:8111/swagger-ui/index.html

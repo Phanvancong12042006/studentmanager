@@ -1,0 +1,55 @@
+.app-content {
+    min-height: calc(100vh - 7rem);
+}
+
+.app-sidebar {
+    background-color: #000 !important;
+    color: #fff;
+}
+
+.app-sidebar .sidebar-brand,
+.app-sidebar .brand-link {
+    background-color: #000;
+    color: #fff;
+}
+
+.app-sidebar .nav-link {
+    color: #fff;
+}
+
+.app-sidebar .nav-link:hover,
+.app-sidebar .nav-link.active {
+    color: #fff;
+    background-color: #212529;
+}
+
+.card-header .btn {
+    white-space: nowrap;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.table td:last-child {
+    white-space: nowrap;
+}
+
+.table .btn-sm {
+    min-width: 2rem;
+}
+
+@media (max-width: 576px) {
+    .app-content-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .card-header {
+        gap: .75rem;
+        align-items: flex-start !important;
+    }
+
+    .card-header .btn {
+        font-size: .875rem;
+    }
+}

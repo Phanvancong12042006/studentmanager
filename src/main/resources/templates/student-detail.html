@@ -3,31 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết sinh viên</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/adminlte.min.css">
+    <link rel="stylesheet" th:href="@{/css/studentmanager.css}">
 </head>
-<body class="bg-light">
-<div class="container mt-5" style="max-width: 600px;">
-    <div class="card shadow">
-        <div class="card-header bg-info text-white">
-            <h4 class="mb-0">THÔNG TIN CHI TIẾT SINH VIÊN</h4>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+<div class="app-wrapper">
+    <nav class="app-header navbar navbar-expand bg-body">
+        <div class="container-fluid">
+            <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button" aria-label="Bật tắt thanh bên"><i class="bi bi-list"></i></a>
+            <a th:href="@{/students}" class="nav-link fw-semibold">Student Manager</a>
         </div>
-        <div class="card-body" th:if="${student != null}">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Mã hệ thống (UUID):</strong> <span class="text-muted" th:text="${student.id}"></span></li>
-                <li class="list-group-item"><strong>Mã sinh viên:</strong> <span class="fw-bold" th:text="${student.studentCode}"></span></li>
-                <li class="list-group-item"><strong>Họ và tên:</strong> <span th:text="${student.fullName}"></span></li>
-                <li class="list-group-item"><strong>Email:</strong> <span th:text="${student.email}"></span></li>
-                <li class="list-group-item"><strong>Số điện thoại:</strong> <span th:text="${student.phone}"></span></li>
-                <li class="list-group-item"><strong>Lớp học:</strong> <span th:text="${student.className}"></span></li>
-            </ul>
+    </nav>
+    <aside class="app-sidebar sidebar-dark-primary shadow" data-bs-theme="dark">
+        <div class="sidebar-brand">
+            <a th:href="@{/students}" class="brand-link"><span class="brand-text fw-light">Student Manager</span></a>
         </div>
-        <div class="card-body text-center" th:if="${student == null}">
-            <p class="text-danger fw-bold mb-0">Không tìm thấy sinh viên!</p>
+        <div class="sidebar-wrapper">
+            <nav class="mt-2">
+                <ul class="nav sidebar-menu flex-column">
+                    <li class="nav-item">
+                        <a th:href="@{/students}" class="nav-link active">
+                            <i class="nav-icon bi bi-people-fill"></i>
+                            <p>Quản lý sinh viên</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div class="card-footer">
-            <a th:href="@{/students}" class="btn btn-secondary">Quay lại danh sách</a>
+    </aside>
+
+    <main class="app-main">
+        <div class="app-content">
+            <div class="container-fluid py-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card card-info card-outline shadow-sm">
+                            <div class="card-header">
+                                <h3 class="card-title mb-0">Thông tin chi tiết sinh viên</h3>
+                            </div>
+                            <div class="card-body" th:if="${student != null}">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Mã hệ thống (UUID):</strong> <span class="text-muted" th:text="${student.id}"></span></li>
+                                    <li class="list-group-item"><strong>Mã sinh viên:</strong> <span class="font-weight-bold" th:text="${student.studentCode}"></span></li>
+                                    <li class="list-group-item"><strong>Họ và tên:</strong> <span th:text="${student.fullName}"></span></li>
+                                    <li class="list-group-item"><strong>Email:</strong> <span th:text="${student.email}"></span></li>
+                                    <li class="list-group-item"><strong>Số điện thoại:</strong> <span th:text="${student.phone}"></span></li>
+                                    <li class="list-group-item"><strong>Lớp học:</strong> <span th:text="${student.className}"></span></li>
+                                </ul>
+                            </div>
+                            <div class="card-body text-center" th:if="${student == null}">
+                                <p class="text-danger font-weight-bold mb-0">Không tìm thấy sinh viên!</p>
+                            </div>
+                            <div class="card-footer">
+                                <a th:href="@{/students}" class="btn btn-secondary">Quay lại danh sách</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
 </body>
 </html>
