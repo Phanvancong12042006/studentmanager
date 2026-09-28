@@ -1,4 +1,4 @@
-package com.example.studentmanager;
+package com.example.studentmanager.entity;
 
 import java.util.UUID;
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.studentmanager.Student;
+import com.example.studentmanager.entity.Student;
 import com.example.studentmanager.repository.StudentRepository;
 import com.example.studentmanager.service.StudentService;
 

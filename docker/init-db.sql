@@ -1,0 +1,5 @@
+IF DB_ID(N'QuanLySinhVien') IS NULL
+BEGIN
+    CREATE DATABASE [QuanLySinhVien];
+END;
+GO
